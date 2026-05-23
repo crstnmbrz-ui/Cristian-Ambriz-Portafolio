@@ -523,6 +523,11 @@ h3 {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.project-grid.single-project {
+  grid-template-columns: minmax(280px, 430px);
+  justify-content: center;
+}
+
 .project-card,
 .lead-card {
   padding: 24px;
