@@ -552,7 +552,7 @@ h3 {
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
+  gap: 18px;
 }
 
 .featured-project-topline span {
