@@ -363,7 +363,7 @@ h3 {
 }
 
 .stat-one {
-  top: 78px;
+  top: 10px;
   right: calc(min(510px, 100%) - 160px);
 }
 
