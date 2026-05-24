@@ -520,6 +520,41 @@ h3 {
 }
 
 .timeline-item time,
+.timeline-item h3,
+.timeline-item p {
+  position: relative;
+  z-index: 1;
+  max-width: min(72%, 760px);
+}
+
+.experience-watermark {
+  position: absolute;
+  z-index: 0;
+  right: clamp(18px, 4vw, 46px);
+  top: 50%;
+  max-width: none;
+  pointer-events: none;
+  transform: translateY(-50%);
+  filter: grayscale(1) invert(1) contrast(1.5);
+  mix-blend-mode: screen;
+  opacity: 0.16;
+}
+
+.imse-mark {
+  width: clamp(280px, 35vw, 430px);
+}
+
+.dropdev-mark {
+  width: clamp(150px, 20vw, 235px);
+  opacity: 0.13;
+}
+
+.stackpole-mark {
+  width: clamp(190px, 25vw, 300px);
+  opacity: 0.14;
+}
+
+.timeline-item time,
 .project-card span,
 .lead-card span {
   display: inline-block;
@@ -766,6 +801,29 @@ footer {
 
   .featured-project-media {
     min-height: 280px;
+  }
+
+  .timeline-item time,
+  .timeline-item h3,
+  .timeline-item p {
+    max-width: 100%;
+  }
+
+  .experience-watermark {
+    right: 12px;
+    opacity: 0.08;
+  }
+
+  .imse-mark {
+    width: min(58vw, 350px);
+  }
+
+  .dropdev-mark {
+    width: min(34vw, 205px);
+  }
+
+  .stackpole-mark {
+    width: min(42vw, 252px);
   }
 
   .project-stats {
