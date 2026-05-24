@@ -403,6 +403,17 @@ h3 {
   padding: clamp(24px, 4vw, 40px);
 }
 
+.about-intro {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.about-intro p {
+  max-width: 490px;
+  margin-bottom: 0;
+}
+
 .glass-panel p,
 .timeline-item p,
 .project-card p,
