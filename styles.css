@@ -475,27 +475,30 @@ h3 {
 .experience-watermark {
   position: absolute;
   right: clamp(24px, 5vw, 64px);
-  top: 50%;
+  top: clamp(10px, 1.3vw, 14px);
   z-index: 0;
   width: auto;
   max-width: none;
   pointer-events: none;
   object-fit: contain;
-  transform: translateY(-50%);
   filter: grayscale(1) brightness(3);
   opacity: 0.065;
 }
 
 .imse-mark {
-  height: clamp(78px, 11vw, 126px);
+  height: clamp(68px, 9vw, 96px);
+}
+
+.harmony-mark {
+  height: clamp(70px, 9vw, 98px);
 }
 
 .dropdev-mark {
-  height: clamp(100px, 13vw, 142px);
+  height: clamp(68px, 8.5vw, 88px);
 }
 
 .stackpole-mark {
-  height: clamp(82px, 12vw, 132px);
+  height: clamp(74px, 9.4vw, 100px);
 }
 
 .timeline-item time,
@@ -749,19 +752,24 @@ footer {
 
   .experience-watermark {
     right: 14px;
+    top: 10px;
     opacity: 0.045;
   }
 
   .imse-mark {
-    height: clamp(64px, 18vw, 86px);
+    height: clamp(54px, 15vw, 68px);
+  }
+
+  .harmony-mark {
+    height: clamp(54px, 15vw, 68px);
   }
 
   .dropdev-mark {
-    height: clamp(72px, 21vw, 98px);
+    height: clamp(48px, 14vw, 62px);
   }
 
   .stackpole-mark {
-    height: clamp(64px, 20vw, 90px);
+    height: clamp(57px, 16vw, 72px);
   }
 
   .project-stats {
