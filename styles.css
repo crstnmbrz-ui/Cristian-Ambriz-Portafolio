@@ -385,7 +385,6 @@ h3 {
 }
 
 .glass-panel,
-.feature-card,
 .timeline-item,
 .project-card,
 .lead-card,
@@ -403,17 +402,6 @@ h3 {
   padding: clamp(24px, 4vw, 40px);
 }
 
-.about-intro {
-  display: grid;
-  place-items: center;
-  text-align: center;
-}
-
-.about-intro p {
-  max-width: 490px;
-  margin-bottom: 0;
-}
-
 .glass-panel p,
 .timeline-item p,
 .project-card p,
@@ -422,28 +410,6 @@ h3 {
   line-height: 1.75;
 }
 
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-}
-
-.feature-card {
-  min-height: 235px;
-  padding: 24px;
-  color: inherit;
-  text-align: left;
-  cursor: pointer;
-  transition: transform 260ms ease, border-color 260ms ease, background 260ms ease, box-shadow 260ms ease;
-}
-
-.feature-card:nth-child(1),
-.feature-card:nth-child(2),
-.feature-card:nth-child(5) {
-  grid-column: span 2;
-}
-
-.feature-card::before,
 .project-card::before,
 .lead-card::before,
 .glass-panel::before {
@@ -458,8 +424,6 @@ h3 {
   pointer-events: none;
 }
 
-.feature-card:hover,
-.feature-card.expanded,
 .project-card:hover,
 .lead-card:hover {
   transform: translateY(-8px);
@@ -468,28 +432,10 @@ h3 {
   box-shadow: 0 30px 90px rgba(88, 166, 255, 0.18);
 }
 
-.feature-card:hover::before,
-.feature-card.expanded::before,
 .project-card:hover::before,
 .lead-card:hover::before,
 .glass-panel:hover::before {
   opacity: 1;
-}
-
-.feature-card.expanded {
-  min-height: 290px;
-}
-
-.card-index {
-  display: block;
-  margin-bottom: 48px;
-  color: rgba(255, 255, 255, 0.42);
-  font-weight: 900;
-}
-
-.feature-card p {
-  color: var(--muted);
-  line-height: 1.65;
 }
 
 .resume-panel {
@@ -798,16 +744,6 @@ footer {
     transform: translateX(-50%);
   }
 
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .feature-card,
-  .feature-card:nth-child(1),
-  .feature-card:nth-child(2),
-  .feature-card:nth-child(5) {
-    grid-column: span 1;
-  }
 }
 
 @media (max-width: 640px) {
@@ -873,11 +809,4 @@ footer {
     bottom: 20px;
   }
 
-  .card-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .feature-card {
-    min-height: 210px;
-  }
 }
