@@ -465,20 +465,37 @@ h3 {
   border-left: 3px solid rgba(100, 244, 255, 0.7);
 }
 
-.experience-company {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  white-space: nowrap;
+.timeline-item time,
+.timeline-item h3,
+.timeline-item p {
+  position: relative;
+  z-index: 1;
 }
 
-.experience-company img {
+.experience-watermark {
+  position: absolute;
+  right: clamp(24px, 5vw, 64px);
+  top: 50%;
+  z-index: 0;
   width: auto;
-  height: 1.05em;
+  max-width: none;
+  pointer-events: none;
   object-fit: contain;
-  vertical-align: middle;
-  filter: grayscale(1) brightness(2);
-  opacity: 0.78;
+  transform: translateY(-50%);
+  filter: grayscale(1) brightness(3);
+  opacity: 0.065;
+}
+
+.imse-mark {
+  height: clamp(78px, 11vw, 126px);
+}
+
+.dropdev-mark {
+  height: clamp(100px, 13vw, 142px);
+}
+
+.stackpole-mark {
+  height: clamp(82px, 12vw, 132px);
 }
 
 .timeline-item time,
@@ -728,6 +745,23 @@ footer {
 
   .featured-project-media {
     min-height: 280px;
+  }
+
+  .experience-watermark {
+    right: 14px;
+    opacity: 0.045;
+  }
+
+  .imse-mark {
+    height: clamp(64px, 18vw, 86px);
+  }
+
+  .dropdev-mark {
+    height: clamp(72px, 21vw, 98px);
+  }
+
+  .stackpole-mark {
+    height: clamp(64px, 20vw, 90px);
   }
 
   .project-stats {
