@@ -294,7 +294,7 @@ h3 {
   filter: saturate(0.82) contrast(1.1) brightness(0.82);
   transform: scale(1.08);
   opacity: 0;
-  animation: heroSlideshow 20s infinite;
+  animation: heroSlideshow 24s infinite;
 }
 
 .hero-slide:nth-child(1) {
@@ -317,13 +317,18 @@ h3 {
   animation-delay: 16s;
 }
 
+.hero-slide:nth-child(6) {
+  animation-delay: 20s;
+  object-position: 42% 50%;
+}
+
 @keyframes heroSlideshow {
   0%,
-  18% {
+  15% {
     opacity: 1;
   }
 
-  24%,
+  20%,
   100% {
     opacity: 0;
   }
