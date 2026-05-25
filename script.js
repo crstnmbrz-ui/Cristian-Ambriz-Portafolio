@@ -4,7 +4,7 @@ const transitionLayer = document.querySelector(".page-transition");
 const links = [...document.querySelectorAll('a[href^="#"]')];
 const sections = [...document.querySelectorAll("main section[id]")];
 const revealItems = document.querySelectorAll(".reveal");
-const glowItems = document.querySelectorAll(".project-card, .lead-card, .glass-panel");
+const glowItems = document.querySelectorAll(".project-card, .lead-card, .recognition-card, .glass-panel");
 const tiltCards = document.querySelectorAll(".tilt-card");
 const canvas = document.querySelector(".ambient-canvas");
 const ctx = canvas.getContext("2d");
