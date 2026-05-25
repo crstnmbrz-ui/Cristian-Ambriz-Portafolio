@@ -165,21 +165,72 @@
           <article class="recognition-card reveal">
             <p class="recognition-organization">Tech Frontier and Mike Loya Center</p>
             <h3>Data &amp; AI Storytelling for Entrepreneurs</h3>
-            <p>
+            <p class="recognition-description">
               Completed training focused on using data, artificial intelligence, and storytelling
               to communicate business ideas more effectively.
             </p>
+            <button class="credential-action pending" type="button" disabled title="PDF file pending upload">
+              Open PDF
+            </button>
           </article>
           <article class="recognition-card reveal">
             <p class="recognition-organization">Business Accelerator / Entrepreneurship Training</p>
             <h3>Studio G Program</h3>
-            <p>
+            <p class="recognition-description">
               Participated in workshops and mentoring sessions focused on business development,
               customer discovery, venture analysis, and strategic growth.
             </p>
+            <button class="credential-action pending" type="button" disabled title="PDF file pending upload">
+              Open PDF
+            </button>
+          </article>
+          <article class="recognition-card reveal">
+            <p class="recognition-organization">IBM / Coursera</p>
+            <h3>Artificial Intelligence Essentials V2</h3>
+            <p class="recognition-description">
+              Completed foundational training in artificial intelligence concepts, AI applications
+              for business, and emerging technologies.
+            </p>
+            <a
+              class="credential-action"
+              href="credentials/Artificial%20Intelligence%20Essentials%20V2.pdf"
+              target="_blank"
+              rel="noopener"
+            >
+              Open PDF
+            </a>
+          </article>
+          <article class="recognition-card reveal">
+            <p class="recognition-organization">LinkedIn Learning</p>
+            <h3>Excel, VBA &amp; Access Certifications</h3>
+            <p class="recognition-description">
+              A focused collection of technical credentials in spreadsheets, automation,
+              data analysis, and relational database workflows.
+            </p>
+            <button class="credential-action" type="button" data-credentials-open>
+              Click to see credentials
+            </button>
           </article>
         </div>
       </section>
+
+      <dialog class="credentials-modal" id="linkedin-credentials" aria-labelledby="linkedin-credentials-title">
+        <div class="credentials-dialog">
+          <button class="modal-close" type="button" data-credentials-close aria-label="Close credentials">
+            &times;
+          </button>
+          <p class="recognition-organization">LinkedIn Learning</p>
+          <h2 id="linkedin-credentials-title">Excel, VBA &amp; Access Certifications</h2>
+          <ul class="credentials-list">
+            <li>Learning VBA in Excel (2019)</li>
+            <li>Excel 2016: Macros in Depth</li>
+            <li>Excel: PivotTables in Depth (2018)</li>
+            <li>Excel 2019 Essential Training</li>
+            <li>Access 2019: Queries</li>
+            <li>Access 2019 Essential Training</li>
+          </ul>
+        </div>
+      </dialog>
 
       <section id="experience" class="section">
         <div class="section-heading reveal">

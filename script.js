@@ -6,6 +6,9 @@ const sections = [...document.querySelectorAll("main section[id]")];
 const revealItems = document.querySelectorAll(".reveal");
 const glowItems = document.querySelectorAll(".project-card, .lead-card, .recognition-card, .glass-panel");
 const tiltCards = document.querySelectorAll(".tilt-card");
+const credentialsModal = document.querySelector("#linkedin-credentials");
+const credentialsOpen = document.querySelector("[data-credentials-open]");
+const credentialsClose = document.querySelector("[data-credentials-close]");
 const canvas = document.querySelector(".ambient-canvas");
 const ctx = canvas.getContext("2d");
 
@@ -13,13 +16,14 @@ let particles = [];
 
 function setCanvasSize() {
   const ratio = window.devicePixelRatio || 1;
-  canvas.width = window.innerWidth * ratio;
+  const viewportWidth = document.documentElement.clientWidth;
+  canvas.width = viewportWidth * ratio;
   canvas.height = window.innerHeight * ratio;
-  canvas.style.width = `${window.innerWidth}px`;
+  canvas.style.width = `${viewportWidth}px`;
   canvas.style.height = `${window.innerHeight}px`;
   ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-  particles = Array.from({ length: Math.min(72, Math.floor(window.innerWidth / 18)) }, () => ({
-    x: Math.random() * window.innerWidth,
+  particles = Array.from({ length: Math.min(72, Math.floor(viewportWidth / 18)) }, () => ({
+    x: Math.random() * viewportWidth,
     y: Math.random() * window.innerHeight,
     vx: (Math.random() - 0.5) * 0.28,
     vy: (Math.random() - 0.5) * 0.28,
@@ -29,12 +33,13 @@ function setCanvasSize() {
 }
 
 function drawAmbient() {
-  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+  const viewportWidth = document.documentElement.clientWidth;
+  ctx.clearRect(0, 0, viewportWidth, window.innerHeight);
   particles.forEach((particle, index) => {
     particle.x += particle.vx;
     particle.y += particle.vy;
 
-    if (particle.x < 0 || particle.x > window.innerWidth) particle.vx *= -1;
+    if (particle.x < 0 || particle.x > viewportWidth) particle.vx *= -1;
     if (particle.y < 0 || particle.y > window.innerHeight) particle.vy *= -1;
 
     ctx.beginPath();
@@ -87,6 +92,18 @@ links.forEach((link) => {
       transitionLayer.classList.remove("active");
     }, 260);
   });
+});
+
+credentialsOpen?.addEventListener("click", () => {
+  credentialsModal.showModal();
+});
+
+credentialsClose?.addEventListener("click", () => {
+  credentialsModal.close();
+});
+
+credentialsModal?.addEventListener("click", (event) => {
+  if (event.target === credentialsModal) credentialsModal.close();
 });
 
 glowItems.forEach((item) => {
