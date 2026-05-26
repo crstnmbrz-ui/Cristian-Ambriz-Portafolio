@@ -1100,7 +1100,7 @@ h3 {
 }
 
 .featured-project {
-  min-height: 430px;
+  min-height: 640px;
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.75fr);
   align-items: stretch;
@@ -1111,7 +1111,7 @@ h3 {
 .featured-project-content {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 34px;
 }
 
@@ -1148,6 +1148,23 @@ h3 {
   text-transform: uppercase;
 }
 
+.ca-brand-header {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 3vw, 28px);
+}
+
+.ca-brand-header img {
+  flex: 0 0 auto;
+  width: clamp(72px, 9vw, 94px);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid rgba(100, 244, 255, 0.16);
+  border-radius: 18px;
+  filter: saturate(0.85) contrast(1.04);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.32);
+}
+
 .featured-project p {
   max-width: 760px;
   margin-bottom: 0;
@@ -1159,6 +1176,80 @@ h3 {
   grid-template-columns: repeat(3, minmax(150px, 1fr));
   gap: 16px;
   max-width: 760px;
+}
+
+.ca-story-details {
+  margin-top: auto;
+  border: 1px solid rgba(100, 244, 255, 0.2);
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.035);
+  transition: border-color 220ms ease, background 220ms ease;
+}
+
+.ca-story-details:hover,
+.ca-story-details[open] {
+  border-color: rgba(100, 244, 255, 0.42);
+  background: rgba(100, 244, 255, 0.055);
+}
+
+.ca-story-details summary {
+  position: relative;
+  padding: 18px 52px 18px 20px;
+  color: var(--text);
+  font-weight: 750;
+  list-style: none;
+  cursor: pointer;
+}
+
+.ca-story-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.ca-story-details summary::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  color: var(--cyan);
+  font-size: 1.4rem;
+  transform: translateY(-50%);
+  transition: transform 220ms ease;
+}
+
+.ca-story-details[open] summary::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.ca-story-content {
+  padding: 0 20px 22px;
+  animation: caStoryReveal 260ms ease;
+}
+
+.ca-story-content p {
+  margin: 0 0 16px;
+  color: var(--soft);
+  font-size: 0.95rem;
+  line-height: 1.68;
+}
+
+.ca-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 8px;
+}
+
+@keyframes caStoryReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .project-stat {
@@ -1198,6 +1289,10 @@ h3 {
   background: #030406;
 }
 
+.ca-product-gallery {
+  min-height: 690px;
+}
+
 .featured-project-media::after {
   content: "";
   position: absolute;
@@ -1212,6 +1307,74 @@ h3 {
   display: block;
   object-fit: cover;
   object-position: center;
+}
+
+.ca-product-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.045);
+  filter: saturate(0.92) contrast(1.04) brightness(0.87);
+  animation: caProductSlideshow 60s infinite;
+}
+
+.ca-product-slide:nth-child(1) {
+  animation-delay: 0s;
+  object-position: center;
+}
+
+.ca-product-slide:nth-child(2) {
+  animation-delay: 15s;
+  object-position: center;
+}
+
+.ca-product-slide:nth-child(3) {
+  animation-delay: 30s;
+  object-position: center;
+}
+
+.ca-product-slide:nth-child(4) {
+  animation-delay: 45s;
+  object-position: center;
+}
+
+@keyframes caProductSlideshow {
+  0%,
+  23% {
+    opacity: 1;
+  }
+
+  26%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.ca-gallery-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, transparent 54%, rgba(3, 4, 6, 0.6) 100%),
+    radial-gradient(circle at 50% 20%, transparent, rgba(3, 4, 6, 0.1));
+  pointer-events: none;
+}
+
+.ca-gallery-label {
+  position: absolute;
+  bottom: 18px;
+  left: 18px;
+  z-index: 2;
+  padding: 9px 14px;
+  color: rgba(157, 255, 225, 0.88);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid rgba(100, 244, 255, 0.3);
+  border-radius: 999px;
+  background: rgba(3, 4, 6, 0.52);
+  backdrop-filter: blur(12px);
 }
 
 .project-card > img,
@@ -1333,6 +1496,10 @@ footer {
     min-height: 280px;
   }
 
+  .ca-product-gallery {
+    min-height: clamp(430px, 118vw, 620px);
+  }
+
   .experience-watermark {
     right: 14px;
     top: 10px;
@@ -1405,6 +1572,15 @@ footer {
 
   .project-stats {
     grid-template-columns: 1fr;
+  }
+
+  .ca-brand-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ca-actions .credential-action {
+    width: 100%;
   }
 
   .button,
