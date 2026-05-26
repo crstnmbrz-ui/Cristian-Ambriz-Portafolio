@@ -33,7 +33,7 @@ function setCanvasSize() {
     vx: (Math.random() - 0.5) * 0.28,
     vy: (Math.random() - 0.5) * 0.28,
     size: Math.random() * 1.8 + 0.4,
-    alpha: Math.random() * 0.46 + 0.12,
+    alpha: Math.random() * 0.48 + 0.18,
   }));
 }
 
@@ -56,7 +56,7 @@ function drawAmbient() {
       const other = particles[next];
       const distance = Math.hypot(particle.x - other.x, particle.y - other.y);
       if (distance < 120) {
-        ctx.strokeStyle = `rgba(120, 210, 255, ${(1 - distance / 120) * 0.08})`;
+        ctx.strokeStyle = `rgba(120, 210, 255, ${(1 - distance / 120) * 0.12})`;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(particle.x, particle.y);
