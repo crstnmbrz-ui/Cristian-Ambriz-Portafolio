@@ -813,8 +813,82 @@ h3 {
 }
 
 .timeline-item {
+  --brand-primary: rgba(100, 244, 255, 0.7);
+  --brand-secondary: rgba(88, 166, 255, 0.16);
+  --brand-border: rgba(100, 244, 255, 0.34);
+  --brand-shadow: rgba(88, 166, 255, 0.14);
   padding: clamp(24px, 4vw, 42px);
-  border-left: 3px solid rgba(100, 244, 255, 0.7);
+  border-left: 3px solid var(--brand-primary);
+  background:
+    linear-gradient(112deg, var(--brand-secondary), transparent 34%),
+    var(--panel);
+  transition: transform 260ms ease, border-color 260ms ease, background 260ms ease, box-shadow 260ms ease;
+}
+
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: min(210px, 40%);
+  height: 1px;
+  background: linear-gradient(90deg, var(--brand-primary), transparent);
+  opacity: 0.78;
+  pointer-events: none;
+}
+
+.timeline-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--brand-border);
+  border-left-color: var(--brand-primary);
+  background:
+    linear-gradient(112deg, var(--brand-secondary), transparent 38%),
+    var(--panel-strong);
+  box-shadow: 0 28px 74px var(--brand-shadow);
+}
+
+.harmony-experience {
+  --brand-primary: rgba(56, 112, 205, 0.88);
+  --brand-secondary: rgba(24, 57, 119, 0.2);
+  --brand-border: rgba(56, 112, 205, 0.44);
+  --brand-shadow: rgba(25, 63, 135, 0.26);
+}
+
+.harmony-experience::after {
+  background: linear-gradient(90deg, rgba(47, 103, 201, 0.86), rgba(184, 40, 47, 0.52), transparent);
+}
+
+.imse-experience {
+  --brand-primary: rgba(56, 207, 240, 0.82);
+  --brand-secondary: rgba(28, 156, 204, 0.15);
+  --brand-border: rgba(56, 207, 240, 0.4);
+  --brand-shadow: rgba(34, 157, 206, 0.19);
+}
+
+.imse-experience::after {
+  background: linear-gradient(90deg, rgba(56, 207, 240, 0.9), rgba(245, 144, 54, 0.58), transparent);
+}
+
+.dropdev-experience {
+  --brand-primary: rgba(158, 98, 255, 0.84);
+  --brand-secondary: rgba(98, 73, 240, 0.17);
+  --brand-border: rgba(181, 106, 255, 0.46);
+  --brand-shadow: rgba(127, 74, 232, 0.25);
+}
+
+.dropdev-experience::after {
+  background: linear-gradient(90deg, rgba(149, 91, 255, 0.94), rgba(70, 155, 255, 0.65), rgba(244, 79, 174, 0.52), transparent);
+}
+
+.stackpole-experience {
+  --brand-primary: rgba(135, 40, 52, 0.9);
+  --brand-secondary: rgba(95, 22, 32, 0.18);
+  --brand-border: rgba(150, 47, 58, 0.46);
+  --brand-shadow: rgba(92, 19, 29, 0.27);
+}
+
+.stackpole-experience::after {
+  background: linear-gradient(90deg, rgba(142, 39, 53, 0.92), rgba(184, 66, 76, 0.38), transparent);
 }
 
 .timeline-item time,
@@ -862,6 +936,10 @@ h3 {
   font-size: 0.8rem;
   font-weight: 900;
   text-transform: uppercase;
+}
+
+.timeline-item time {
+  color: var(--brand-primary);
 }
 
 .project-grid {
