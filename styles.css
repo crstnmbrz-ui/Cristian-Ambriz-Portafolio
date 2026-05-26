@@ -488,13 +488,157 @@ h3 {
   transition: transform 260ms ease, border-color 260ms ease, background 260ms ease, box-shadow 260ms ease;
 }
 
+.award-theme {
+  --award-accent: rgba(100, 244, 255, 0.82);
+  --award-line: rgba(100, 244, 255, 0.36);
+  --award-wash: rgba(100, 244, 255, 0.085);
+  --award-glow: rgba(88, 166, 255, 0.16);
+  --award-highlight: rgba(100, 244, 255, 0.16);
+  border-color: var(--award-line);
+  background:
+    radial-gradient(circle at 12% 0%, var(--award-wash), transparent 43%),
+    linear-gradient(140deg, rgba(255, 255, 255, 0.028), transparent 50%),
+    var(--panel);
+}
+
+.award-theme::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: clamp(25px, 3.5vw, 36px);
+  width: clamp(72px, 16vw, 134px);
+  height: 2px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--award-accent), transparent);
+  box-shadow: 0 0 18px var(--award-highlight);
+  pointer-events: none;
+}
+
+.award-theme::before {
+  background:
+    radial-gradient(circle at var(--mx, 50%) var(--my, 50%), var(--award-highlight), transparent 19rem),
+    linear-gradient(135deg, var(--award-wash), transparent 46%);
+}
+
+.recognition-card.award-theme:hover {
+  border-color: var(--award-accent);
+  background:
+    radial-gradient(circle at 12% 0%, var(--award-highlight), transparent 44%),
+    linear-gradient(140deg, rgba(255, 255, 255, 0.052), transparent 54%),
+    var(--panel-strong);
+  box-shadow: 0 30px 90px var(--award-glow);
+}
+
+.award-theme .recognition-organization {
+  color: var(--award-accent) !important;
+}
+
+.award-theme .skill-tags span {
+  border-color: var(--award-line);
+  background: var(--award-wash);
+}
+
+.recognition-card.award-theme:hover .skill-tags span {
+  border-color: var(--award-accent);
+  background: var(--award-highlight);
+  box-shadow: 0 10px 24px var(--award-glow);
+}
+
+.award-theme .credential-action {
+  border-color: var(--award-line);
+}
+
+.award-theme .credential-action:hover:not(:disabled) {
+  border-color: var(--award-accent);
+  background: var(--award-highlight);
+  box-shadow: 0 14px 34px var(--award-glow);
+}
+
+.mindset-award {
+  --award-accent: rgba(80, 167, 255, 0.84);
+  --award-line: rgba(60, 130, 232, 0.38);
+  --award-wash: rgba(33, 84, 182, 0.1);
+  --award-glow: rgba(31, 103, 226, 0.2);
+  --award-highlight: rgba(48, 127, 244, 0.17);
+}
+
+.data-storytelling-award {
+  --award-accent: rgba(56, 217, 225, 0.84);
+  --award-line: rgba(39, 166, 186, 0.38);
+  --award-wash: rgba(21, 126, 145, 0.1);
+  --award-glow: rgba(30, 150, 186, 0.18);
+  --award-highlight: rgba(45, 201, 222, 0.16);
+}
+
+.studio-award {
+  --award-accent: rgba(244, 178, 68, 0.86);
+  --award-line: rgba(220, 139, 41, 0.38);
+  --award-wash: rgba(194, 106, 30, 0.1);
+  --award-glow: rgba(210, 118, 36, 0.2);
+  --award-highlight: rgba(240, 161, 51, 0.17);
+}
+
+.ai-award {
+  --award-accent: rgba(173, 116, 255, 0.88);
+  --award-line: rgba(120, 107, 244, 0.42);
+  --award-wash: rgba(102, 64, 201, 0.11);
+  --award-glow: rgba(94, 83, 232, 0.22);
+  --award-highlight: rgba(131, 92, 245, 0.18);
+}
+
+.ai-award::after {
+  background: linear-gradient(90deg, rgba(173, 116, 255, 0.9), rgba(75, 170, 255, 0.64), transparent);
+}
+
+.excel-award {
+  --award-accent: rgba(71, 190, 145, 0.84);
+  --award-line: rgba(48, 146, 111, 0.4);
+  --award-wash: rgba(27, 111, 84, 0.1);
+  --award-glow: rgba(24, 123, 88, 0.18);
+  --award-highlight: rgba(50, 165, 121, 0.17);
+}
+
 .featured-award {
+  border-color: rgba(62, 183, 222, 0.3);
   display: grid;
   grid-template-columns: minmax(0, 1.32fr) minmax(300px, 0.78fr);
   gap: clamp(26px, 4vw, 48px);
   margin-bottom: 20px;
   padding: clamp(26px, 4vw, 42px);
+  background:
+    radial-gradient(circle at 78% 24%, rgba(33, 129, 202, 0.14), transparent 28rem),
+    radial-gradient(circle at 16% 12%, rgba(55, 207, 230, 0.09), transparent 26rem),
+    radial-gradient(circle at 74% 86%, rgba(239, 144, 46, 0.09), transparent 24rem),
+    var(--panel);
   transition: transform 260ms ease, border-color 260ms ease, background 260ms ease, box-shadow 260ms ease;
+}
+
+.featured-award::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: clamp(26px, 4vw, 42px);
+  width: clamp(116px, 20vw, 210px);
+  height: 2px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, rgba(82, 224, 244, 0.94), rgba(74, 142, 255, 0.76), rgba(243, 154, 48, 0.56), transparent);
+  box-shadow: 0 0 24px rgba(75, 184, 233, 0.4);
+}
+
+.featured-award::before {
+  background:
+    radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(63, 195, 238, 0.17), transparent 25rem),
+    linear-gradient(135deg, rgba(57, 195, 224, 0.09), transparent 40%, rgba(237, 138, 43, 0.06));
+}
+
+.featured-award:hover {
+  border-color: rgba(72, 207, 234, 0.5);
+  background:
+    radial-gradient(circle at 78% 24%, rgba(36, 137, 214, 0.2), transparent 29rem),
+    radial-gradient(circle at 16% 12%, rgba(55, 207, 230, 0.14), transparent 26rem),
+    radial-gradient(circle at 74% 86%, rgba(239, 144, 46, 0.13), transparent 24rem),
+    var(--panel-strong);
+  box-shadow: 0 34px 100px rgba(35, 134, 205, 0.2);
 }
 
 .featured-award-content {
