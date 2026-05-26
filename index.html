@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=ca-modal-2" />
   </head>
   <body>
     <div class="page-transition" aria-hidden="true"></div>
@@ -456,10 +456,7 @@
                 <strong>Active Business</strong>
                 <span>Featured Venture</span>
               </div>
-              <div class="ca-brand-header">
-                <img src="Photos/CA%20Natural%20Logo.jpg" alt="CA Natural logo" />
-                <h3>CA Natural</h3>
-              </div>
+              <h3>CA Natural</h3>
               <p>
                 CA Natural is a natural personal care brand focused on safe, healthy products made
                 with quality ingredients. The flagship product is a shampoo formulated for growth
@@ -479,41 +476,70 @@
                   <span>Public Pitches</span>
                 </div>
               </div>
-              <details class="ca-story-details">
-                <summary>Natural Hair Care Information</summary>
-                <div class="ca-story-content">
-                  <p>
-                    CA Natural started from my personal passion for creating natural products and
-                    has grown into a small business that continues to expand. The brand focuses on
-                    natural hair care and personal care products made for people who want cleaner
-                    alternatives in a time where many products rely heavily on chemicals.
-                  </p>
-                  <p>
-                    Our goal is to create practical natural products that support hair growth, scalp
-                    care, skin care, and everyday personal care needs. CA Natural has developed
-                    products such as natural shampoos, hair oils, anti-hair fall products, skin care
-                    blends, coconut-based oils, face products, and natural solutions for concerns
-                    like dryness, spots, and scalp issues.
-                  </p>
-                  <p>
-                    What began as an idea and personal interest has become a growing business with a
-                    bigger vision: to expand across the United States and Mexico, making natural
-                    products more accessible to more people.
-                  </p>
-                  <p>
-                    CA Natural has an active Instagram page and product catalog where customers can
-                    explore products, updates, and new releases.
-                  </p>
-                  <div class="ca-actions">
-                    <button class="credential-action pending" type="button" disabled title="Instagram URL pending">
-                      Visit Instagram Page
-                    </button>
-                    <a class="credential-action" href="#ca-natural-products">Explore Product Catalog</a>
-                  </div>
-                </div>
-              </details>
+              <button class="credential-action ca-detail-trigger" type="button" data-ca-open>
+                Natural Hair Care Information
+              </button>
             </div>
-            <div class="featured-project-media ca-product-gallery" id="ca-natural-products">
+            <div class="featured-project-media">
+              <img src="Photos/CA2.jpeg" alt="CA Natural project cover" />
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <dialog class="ca-modal" id="ca-natural-modal" aria-labelledby="ca-modal-title">
+        <div class="ca-modal-shell">
+          <button class="modal-close" type="button" data-ca-close aria-label="Close CA Natural details">
+            &times;
+          </button>
+          <div class="ca-modal-header">
+            <div class="ca-modal-brand">
+              <img src="Photos/CA%20Natural%20Logo.jpg" alt="CA Natural logo" />
+              <div>
+                <p class="eyebrow">Natural Personal Care</p>
+                <h2 id="ca-modal-title">CA Natural</h2>
+              </div>
+            </div>
+            <div class="ca-actions">
+              <a
+                class="credential-action"
+                href="https://www.instagram.com/_ca.natural_/"
+                target="_blank"
+                rel="noopener"
+              >
+                Visit Instagram Page
+              </a>
+              <button class="credential-action" type="button" data-ca-catalog>
+                Explore Product Catalog
+              </button>
+            </div>
+          </div>
+          <div class="ca-modal-layout">
+            <div class="ca-story-content">
+              <p>
+                CA Natural started from my personal passion for creating natural products and has
+                grown into a small business that continues to expand. The brand focuses on natural
+                hair care and personal care products made for people who want cleaner alternatives
+                in a time where many products rely heavily on chemicals.
+              </p>
+              <p>
+                Our goal is to create practical natural products that support hair growth, scalp
+                care, skin care, and everyday personal care needs. CA Natural has developed products
+                such as natural shampoos, hair oils, anti-hair fall products, skin care blends,
+                coconut-based oils, face products, and natural solutions for concerns like dryness,
+                spots, and scalp issues.
+              </p>
+              <p>
+                What began as an idea and personal interest has become a growing business with a
+                bigger vision: to expand across the United States and Mexico, making natural
+                products more accessible to more people.
+              </p>
+              <p>
+                CA Natural has an active Instagram page and product catalog where customers can
+                explore products, updates, and new releases.
+              </p>
+            </div>
+            <div class="ca-product-gallery" id="ca-natural-products" aria-label="CA Natural product gallery">
               <img class="ca-product-slide" src="Photos/CAN1.jpeg" alt="CA Natural shampoo product presentation" />
               <img class="ca-product-slide" src="Photos/CAN2.jpeg" alt="CA Natural personal care product collection" />
               <img class="ca-product-slide" src="Photos/CAN3.jpeg" alt="CA Natural anti-dandruff hair balm" />
@@ -521,9 +547,9 @@
               <div class="ca-gallery-overlay"></div>
               <span class="ca-gallery-label">Natural Hair Care Collection</span>
             </div>
-          </article>
+          </div>
         </div>
-      </section>
+      </dialog>
 
       <section id="volunteer" class="section">
         <div class="section-heading reveal">
@@ -600,6 +626,6 @@
       <p>Cristian Ambriz | Industrial & Systems Engineering | UTEP</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=ca-modal-2"></script>
   </body>
 </html>

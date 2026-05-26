@@ -9,6 +9,11 @@ const tiltCards = document.querySelectorAll(".tilt-card");
 const credentialsModal = document.querySelector("#linkedin-credentials");
 const credentialsOpen = document.querySelector("[data-credentials-open]");
 const credentialsClose = document.querySelector("[data-credentials-close]");
+const caModal = document.querySelector("#ca-natural-modal");
+const caOpen = document.querySelector("[data-ca-open]");
+const caClose = document.querySelector("[data-ca-close]");
+const caCatalog = document.querySelector("[data-ca-catalog]");
+const caProducts = document.querySelector("#ca-natural-products");
 const canvas = document.querySelector(".ambient-canvas");
 const ctx = canvas.getContext("2d");
 
@@ -70,6 +75,28 @@ function closeMenu() {
   document.body.classList.remove("menu-open");
 }
 
+function openDialog(modal) {
+  if (typeof modal.showModal === "function") {
+    modal.showModal();
+    return;
+  }
+
+  modal.setAttribute("open", "");
+  modal.classList.add("modal-visible");
+  document.body.classList.add("dialog-open");
+}
+
+function closeDialog(modal) {
+  if (typeof modal.close === "function") {
+    modal.close();
+  } else {
+    modal.removeAttribute("open");
+  }
+
+  modal.classList.remove("modal-visible");
+  document.body.classList.remove("dialog-open");
+}
+
 navToggle.addEventListener("click", () => {
   const isOpen = navToggle.getAttribute("aria-expanded") === "true";
   navToggle.setAttribute("aria-expanded", String(!isOpen));
@@ -95,15 +122,31 @@ links.forEach((link) => {
 });
 
 credentialsOpen?.addEventListener("click", () => {
-  credentialsModal.showModal();
+  openDialog(credentialsModal);
 });
 
 credentialsClose?.addEventListener("click", () => {
-  credentialsModal.close();
+  closeDialog(credentialsModal);
 });
 
 credentialsModal?.addEventListener("click", (event) => {
-  if (event.target === credentialsModal) credentialsModal.close();
+  if (event.target === credentialsModal) closeDialog(credentialsModal);
+});
+
+caOpen?.addEventListener("click", () => {
+  openDialog(caModal);
+});
+
+caClose?.addEventListener("click", () => {
+  closeDialog(caModal);
+});
+
+caModal?.addEventListener("click", (event) => {
+  if (event.target === caModal) closeDialog(caModal);
+});
+
+caCatalog?.addEventListener("click", () => {
+  caProducts.scrollIntoView({ behavior: "smooth", block: "center" });
 });
 
 glowItems.forEach((item) => {
