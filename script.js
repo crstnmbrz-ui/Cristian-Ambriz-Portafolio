@@ -16,8 +16,11 @@ const caCatalog = document.querySelector("[data-ca-catalog]");
 const caProducts = document.querySelector("#ca-natural-products");
 const canvas = document.querySelector(".ambient-canvas");
 const ctx = canvas.getContext("2d");
+const spacecraft = document.querySelector(".spacecraft");
 
 let particles = [];
+const spacecraftDirections = ["left", "top", "right", "bottom"];
+let spacecraftDirectionIndex = Math.floor(Math.random() * spacecraftDirections.length);
 const signatureSegments = [
   [[0.36, 0.1], [0.15, 0]],
   [[0.15, 0], [0, 0.2]],
@@ -102,6 +105,52 @@ function drawAmbient(time = 0) {
 
   drawSignature(time, viewportWidth, window.innerHeight);
   requestAnimationFrame(drawAmbient);
+}
+
+function launchSpacecraft() {
+  if (!spacecraft || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const direction = spacecraftDirections[spacecraftDirectionIndex];
+  spacecraftDirectionIndex = (spacecraftDirectionIndex + 1) % spacecraftDirections.length;
+
+  const viewportWidth = document.documentElement.clientWidth;
+  const viewportHeight = window.innerHeight;
+  const outside = Math.max(spacecraft.offsetWidth, 150) + 42;
+  const horizontalLane = viewportWidth * (0.16 + Math.random() * 0.58);
+  const verticalLane = viewportHeight * (0.18 + Math.random() * 0.57);
+  const drift = (Math.random() - 0.5) * Math.min(viewportHeight * 0.2, 120);
+  const variables = {
+    "--ship-duration": `${12 + Math.random() * 4}s`,
+    "--ship-opacity": viewportWidth < 640 ? "0.14" : "0.19",
+  };
+
+  if (direction === "left" || direction === "right") {
+    variables["--ship-start-x"] = direction === "left" ? `${-outside}px` : `${viewportWidth + outside}px`;
+    variables["--ship-end-x"] = direction === "left" ? `${viewportWidth + outside}px` : `${-outside}px`;
+    variables["--ship-start-y"] = `${verticalLane}px`;
+    variables["--ship-end-y"] = `${verticalLane + drift}px`;
+    variables["--ship-rotation"] = direction === "left" ? "0deg" : "180deg";
+  } else {
+    variables["--ship-start-x"] = `${horizontalLane}px`;
+    variables["--ship-end-x"] = `${horizontalLane + drift}px`;
+    variables["--ship-start-y"] = direction === "top" ? `${-outside}px` : `${viewportHeight + outside}px`;
+    variables["--ship-end-y"] = direction === "top" ? `${viewportHeight + outside}px` : `${-outside}px`;
+    variables["--ship-rotation"] = direction === "top" ? "90deg" : "-90deg";
+  }
+
+  Object.entries(variables).forEach(([name, value]) => spacecraft.style.setProperty(name, value));
+  spacecraft.classList.remove("cruising");
+  void spacecraft.offsetWidth;
+  spacecraft.classList.add("cruising");
+}
+
+function startSpacecraftPatrol() {
+  if (!spacecraft || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  window.setTimeout(() => {
+    launchSpacecraft();
+    window.setInterval(launchSpacecraft, 30000);
+  }, 2400);
 }
 
 function closeMenu() {
@@ -235,4 +284,5 @@ sections.forEach((section) => navObserver.observe(section));
 
 setCanvasSize();
 drawAmbient();
+startSpacecraftPatrol();
 window.addEventListener("resize", setCanvasSize);

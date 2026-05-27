@@ -69,6 +69,51 @@ img {
   opacity: 0.76;
 }
 
+.spacecraft-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.spacecraft {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: clamp(118px, 14vw, 208px);
+  height: auto;
+  opacity: 0;
+  filter: saturate(0.8) brightness(0.7) drop-shadow(0 0 18px rgba(100, 244, 255, 0.2));
+  transform: translate3d(var(--ship-start-x, -260px), var(--ship-start-y, 30vh), 0)
+    rotate(var(--ship-rotation, 0deg));
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.spacecraft.cruising {
+  animation: spacecraftCruise var(--ship-duration, 14s) cubic-bezier(0.34, 0.05, 0.58, 0.98) forwards;
+}
+
+@keyframes spacecraftCruise {
+  0% {
+    opacity: 0;
+    transform: translate3d(var(--ship-start-x), var(--ship-start-y), 0)
+      rotate(var(--ship-rotation));
+  }
+
+  12%,
+  78% {
+    opacity: var(--ship-opacity, 0.2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--ship-end-x), var(--ship-end-y), 0)
+      rotate(var(--ship-rotation));
+  }
+}
+
 .page-transition {
   position: fixed;
   inset: 0;
@@ -1735,6 +1780,11 @@ footer {
 }
 
 @media (max-width: 640px) {
+  .spacecraft {
+    width: clamp(92px, 29vw, 126px);
+    filter: saturate(0.76) brightness(0.64) drop-shadow(0 0 12px rgba(100, 244, 255, 0.14));
+  }
+
   .site-header {
     padding: 12px;
   }
@@ -1805,4 +1855,10 @@ footer {
     border-radius: 34px;
   }
 
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spacecraft-layer {
+    display: none;
+  }
 }
