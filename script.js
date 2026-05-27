@@ -18,6 +18,16 @@ const canvas = document.querySelector(".ambient-canvas");
 const ctx = canvas.getContext("2d");
 
 let particles = [];
+const signatureSegments = [
+  [[0.36, 0.1], [0.15, 0]],
+  [[0.15, 0], [0, 0.2]],
+  [[0, 0.2], [0, 0.8]],
+  [[0, 0.8], [0.15, 1]],
+  [[0.15, 1], [0.36, 0.9]],
+  [[0.5, 1], [0.7, 0]],
+  [[0.7, 0], [0.92, 1]],
+  [[0.58, 0.58], [0.82, 0.58]],
+];
 
 function setCanvasSize() {
   const ratio = window.devicePixelRatio || 1;
@@ -33,11 +43,35 @@ function setCanvasSize() {
     vx: (Math.random() - 0.5) * 0.28,
     vy: (Math.random() - 0.5) * 0.28,
     size: Math.random() * 1.8 + 0.4,
-    alpha: Math.random() * 0.48 + 0.18,
+    alpha: Math.random() * 0.48 + 0.2,
   }));
 }
 
-function drawAmbient() {
+function drawSignature(time, viewportWidth, viewportHeight) {
+  const pulse = Math.max(0, Math.sin(time / 3600 - 0.7));
+  const alpha = pulse * 0.055;
+  if (alpha < 0.004) return;
+
+  const scale = Math.min(128, viewportWidth * 0.13);
+  const originX = viewportWidth > 820 ? viewportWidth * 0.79 : viewportWidth * 0.62;
+  const originY = viewportHeight * 0.7;
+
+  signatureSegments.forEach(([start, end]) => {
+    ctx.strokeStyle = `rgba(120, 210, 255, ${alpha})`;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(originX + start[0] * scale, originY + start[1] * scale);
+    ctx.lineTo(originX + end[0] * scale, originY + end[1] * scale);
+    ctx.stroke();
+
+    ctx.fillStyle = `rgba(120, 210, 255, ${alpha * 1.7})`;
+    ctx.beginPath();
+    ctx.arc(originX + start[0] * scale, originY + start[1] * scale, 1.4, 0, Math.PI * 2);
+    ctx.fill();
+  });
+}
+
+function drawAmbient(time = 0) {
   const viewportWidth = document.documentElement.clientWidth;
   ctx.clearRect(0, 0, viewportWidth, window.innerHeight);
   particles.forEach((particle, index) => {
@@ -56,7 +90,7 @@ function drawAmbient() {
       const other = particles[next];
       const distance = Math.hypot(particle.x - other.x, particle.y - other.y);
       if (distance < 120) {
-        ctx.strokeStyle = `rgba(120, 210, 255, ${(1 - distance / 120) * 0.12})`;
+        ctx.strokeStyle = `rgba(120, 210, 255, ${(1 - distance / 120) * 0.14})`;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(particle.x, particle.y);
@@ -66,6 +100,7 @@ function drawAmbient() {
     }
   });
 
+  drawSignature(time, viewportWidth, window.innerHeight);
   requestAnimationFrame(drawAmbient);
 }
 
