@@ -46,13 +46,13 @@ function setCanvasSize() {
     vx: (Math.random() - 0.5) * 0.28,
     vy: (Math.random() - 0.5) * 0.28,
     size: Math.random() * 1.8 + 0.4,
-    alpha: Math.random() * 0.48 + 0.2,
+    alpha: Math.random() * 0.54 + 0.24,
   }));
 }
 
 function drawSignature(time, viewportWidth, viewportHeight) {
   const pulse = Math.max(0, Math.sin(time / 3600 - 0.7));
-  const alpha = pulse * 0.055;
+  const alpha = pulse * 0.072;
   if (alpha < 0.004) return;
 
   const scale = Math.min(128, viewportWidth * 0.13);
@@ -92,8 +92,8 @@ function drawAmbient(time = 0) {
     for (let next = index + 1; next < particles.length; next += 1) {
       const other = particles[next];
       const distance = Math.hypot(particle.x - other.x, particle.y - other.y);
-      if (distance < 120) {
-        ctx.strokeStyle = `rgba(120, 210, 255, ${(1 - distance / 120) * 0.14})`;
+      if (distance < 132) {
+        ctx.strokeStyle = `rgba(120, 210, 255, ${(1 - distance / 132) * 0.18})`;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(particle.x, particle.y);
