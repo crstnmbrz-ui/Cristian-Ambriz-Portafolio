@@ -1684,7 +1684,7 @@ h3 {
 .poster-feature {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(260px, 0.68fr) minmax(0, 1fr);
+  grid-template-columns: minmax(260px, 0.42fr) minmax(0, 1fr);
   gap: clamp(22px, 4vw, 44px);
   align-items: center;
   margin-top: 18px;
@@ -1763,9 +1763,22 @@ h3 {
   object-position: 54% 42%;
 }
 
+.one-million-media img {
+  object-position: 42% 48%;
+}
+
+.studio-g-card .speaking-media img {
+  object-position: 50% 48%;
+}
+
+.poster-feature .poster-media {
+  aspect-ratio: 1 / 1;
+  max-width: 360px;
+}
+
 .poster-media img {
   object-fit: contain;
-  padding: 10px;
+  padding: 8px;
   background: rgba(255, 255, 255, 0.04);
 }
 
