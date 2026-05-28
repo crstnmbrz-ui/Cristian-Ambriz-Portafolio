@@ -1566,6 +1566,7 @@ h3 {
   --lead-secondary: rgba(88, 166, 255, 0.12);
   --lead-border: rgba(100, 244, 255, 0.28);
   --lead-shadow: rgba(88, 166, 255, 0.16);
+  --lead-glow: rgba(100, 244, 255, 0.22);
   --lead-label: var(--cyan);
   padding-right: clamp(112px, 12vw, 148px);
   border-color: var(--lead-border);
@@ -1573,6 +1574,13 @@ h3 {
     radial-gradient(circle at 86% 20%, var(--lead-secondary), transparent 32%),
     linear-gradient(128deg, rgba(255, 255, 255, 0.085), transparent 44%),
     var(--panel);
+}
+
+.organization-card::before,
+.speaking-card::before {
+  background:
+    radial-gradient(circle at var(--mx, 50%) var(--my, 50%), var(--lead-glow), transparent 18rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 42%);
 }
 
 .organization-card span,
@@ -1595,6 +1603,7 @@ h3 {
   --lead-secondary: rgba(229, 54, 72, 0.14);
   --lead-border: rgba(229, 54, 72, 0.28);
   --lead-shadow: rgba(229, 54, 72, 0.16);
+  --lead-glow: rgba(229, 54, 72, 0.24);
   --lead-label: #ff7f8c;
 }
 
@@ -1603,6 +1612,7 @@ h3 {
   --lead-secondary: rgba(72, 145, 255, 0.16);
   --lead-border: rgba(92, 166, 255, 0.3);
   --lead-shadow: rgba(72, 145, 255, 0.18);
+  --lead-glow: rgba(92, 166, 255, 0.24);
   --lead-label: #8fc2ff;
 }
 
@@ -1611,6 +1621,7 @@ h3 {
   --lead-secondary: rgba(26, 101, 190, 0.15);
   --lead-border: rgba(255, 142, 34, 0.26);
   --lead-shadow: rgba(255, 142, 34, 0.15);
+  --lead-glow: rgba(255, 142, 34, 0.24);
   --lead-label: #ffb45e;
   background:
     radial-gradient(circle at 86% 20%, rgba(26, 101, 190, 0.16), transparent 32%),
@@ -1630,6 +1641,7 @@ h3 {
   --lead-secondary: rgba(42, 132, 255, 0.14);
   --lead-border: rgba(255, 142, 34, 0.28);
   --lead-shadow: rgba(255, 142, 34, 0.14);
+  --lead-glow: rgba(255, 142, 34, 0.24);
   --lead-label: #ffb45e;
 }
 
@@ -1638,6 +1650,7 @@ h3 {
   --lead-secondary: rgba(255, 129, 22, 0.13);
   --lead-border: rgba(255, 129, 22, 0.27);
   --lead-shadow: rgba(255, 129, 22, 0.15);
+  --lead-glow: rgba(255, 129, 22, 0.22);
   --lead-label: #ffad63;
 }
 
@@ -1646,6 +1659,7 @@ h3 {
   --lead-secondary: rgba(154, 15, 78, 0.14);
   --lead-border: rgba(210, 72, 132, 0.28);
   --lead-shadow: rgba(154, 15, 78, 0.16);
+  --lead-glow: rgba(210, 72, 132, 0.22);
   --lead-label: #ff8fbd;
 }
 
@@ -1654,7 +1668,83 @@ h3 {
   --lead-secondary: rgba(242, 184, 49, 0.13);
   --lead-border: rgba(87, 200, 232, 0.28);
   --lead-shadow: rgba(87, 200, 232, 0.15);
+  --lead-glow: rgba(87, 200, 232, 0.22);
   --lead-label: #8adff2;
+}
+
+.speaking-card {
+  padding: 18px 24px 24px;
+  gap: 16px;
+}
+
+.speaking-media {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 28% 22%, rgba(100, 244, 255, 0.1), transparent 16rem),
+    rgba(255, 255, 255, 0.045);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.035);
+}
+
+.speaking-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, transparent 55%, rgba(3, 4, 6, 0.38)),
+    radial-gradient(circle at 80% 12%, rgba(255, 255, 255, 0.12), transparent 14rem);
+  pointer-events: none;
+}
+
+.speaking-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.86) contrast(1.04) brightness(0.86);
+}
+
+.miners-pitch-card .speaking-media img {
+  object-position: 54% 42%;
+}
+
+.poster-media img {
+  object-fit: contain;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.pioneers-card .speaking-media img {
+  object-position: 50% 36%;
+}
+
+.speaking-gallery img {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: speakingGallery 9s infinite;
+}
+
+.speaking-gallery img:nth-child(2) {
+  animation-delay: 4.5s;
+  object-position: 42% 48%;
+}
+
+@keyframes speakingGallery {
+  0%,
+  44% {
+    opacity: 1;
+  }
+
+  52%,
+  100% {
+    opacity: 0;
+  }
 }
 
 .lead-logo-watermark {
@@ -1989,9 +2079,12 @@ footer {
     filter: saturate(0.76) brightness(0.64) drop-shadow(0 0 12px rgba(100, 244, 255, 0.14));
   }
 
-  .organization-card,
-  .speaking-card {
+  .organization-card {
     padding-right: 86px;
+  }
+
+  .speaking-card {
+    padding: 16px;
   }
 
   .lead-logo-watermark {
@@ -2081,5 +2174,13 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .spacecraft-layer {
     display: none;
+  }
+
+  .speaking-gallery img {
+    animation: none;
+  }
+
+  .speaking-gallery img:first-child {
+    opacity: 1;
   }
 }
