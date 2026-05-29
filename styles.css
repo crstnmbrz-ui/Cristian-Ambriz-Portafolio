@@ -596,7 +596,9 @@ h3 {
   isolation: isolate;
   padding: clamp(28px, 4.4vw, 48px);
   background:
-    linear-gradient(135deg, rgba(8, 14, 22, 0.94), rgba(5, 9, 15, 0.96)),
+    radial-gradient(circle at 18% 18%, rgba(53, 173, 255, 0.12), transparent 22rem),
+    radial-gradient(circle at 86% 74%, rgba(38, 105, 184, 0.1), transparent 20rem),
+    linear-gradient(135deg, rgba(8, 14, 22, 0.96), rgba(5, 9, 15, 0.98)),
     var(--panel);
   box-shadow:
     inset 0 0 0 1px rgba(100, 244, 255, 0.08),
@@ -608,17 +610,16 @@ h3 {
   position: absolute;
   inset: 0;
   z-index: 0;
-  opacity: 0.34;
+  opacity: 0.24;
   background:
-    linear-gradient(90deg, transparent 0 15%, rgba(91, 216, 255, 0.58) 15.4%, transparent 15.8% 42%, rgba(91, 216, 255, 0.42) 42.3%, transparent 42.8%),
-    linear-gradient(0deg, transparent 0 20%, rgba(91, 216, 255, 0.34) 20.3%, transparent 20.8% 62%, rgba(255, 171, 74, 0.18) 62.4%, transparent 63%),
-    repeating-linear-gradient(135deg, rgba(91, 216, 255, 0.09) 0 1px, transparent 1px 34px),
-    radial-gradient(circle at 18% 30%, rgba(91, 216, 255, 0.34) 0 2px, transparent 3px),
-    radial-gradient(circle at 72% 42%, rgba(255, 174, 72, 0.32) 0 2px, transparent 3px),
-    radial-gradient(circle at 48% 74%, rgba(91, 216, 255, 0.28) 0 2px, transparent 3px);
-  background-size: 260px 130px, 230px 160px, 42px 42px, 180px 120px, 220px 150px, 200px 140px;
-  filter: drop-shadow(0 0 9px rgba(91, 216, 255, 0.24));
-  animation: circuitTrace 16s linear infinite;
+    linear-gradient(90deg, transparent 0 8%, rgba(91, 216, 255, 0.46) 8.4%, rgba(91, 216, 255, 0.08) 9.1%, transparent 32%),
+    linear-gradient(90deg, transparent 0 18%, rgba(122, 229, 255, 0.34) 18.4%, rgba(122, 229, 255, 0.08) 19%, transparent 48%),
+    linear-gradient(115deg, transparent 0 22%, rgba(69, 173, 255, 0.28) 22.4%, transparent 23.2% 64%, rgba(69, 173, 255, 0.18) 64.4%, transparent 65.2%),
+    radial-gradient(circle, rgba(111, 229, 255, 0.42) 0 1.5px, transparent 2.4px),
+    radial-gradient(circle, rgba(91, 216, 255, 0.32) 0 1px, transparent 2.2px);
+  background-size: 420px 92px, 560px 126px, 520px 220px, 110px 70px, 170px 110px;
+  filter: drop-shadow(0 0 7px rgba(91, 216, 255, 0.18));
+  animation: dataFlow 28s linear infinite;
   pointer-events: none;
 }
 
@@ -628,14 +629,15 @@ h3 {
   inset: 0;
   z-index: 0;
   background:
-    radial-gradient(circle at 22% 20%, rgba(100, 244, 255, 0.18), transparent 18rem),
-    radial-gradient(circle at 82% 78%, rgba(255, 176, 75, 0.1), transparent 16rem),
-    linear-gradient(90deg, rgba(5, 9, 15, 0.24), rgba(5, 9, 15, 0.76) 38%, rgba(5, 9, 15, 0.92));
+    linear-gradient(90deg, rgba(5, 9, 15, 0.24), rgba(5, 9, 15, 0.82) 38%, rgba(5, 9, 15, 0.94)),
+    radial-gradient(circle at 22% 20%, rgba(100, 244, 255, 0.1), transparent 18rem),
+    linear-gradient(180deg, rgba(5, 9, 15, 0.08), rgba(5, 9, 15, 0.58));
+  backdrop-filter: blur(1px);
   pointer-events: none;
 }
 
 .about-tech-card:hover::before {
-  opacity: 0.42;
+  opacity: 0.31;
 }
 
 .about-tech-content {
@@ -662,13 +664,13 @@ h3 {
   margin-bottom: 0;
 }
 
-@keyframes circuitTrace {
+@keyframes dataFlow {
   0% {
-    background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+    background-position: -420px 0, 560px 24px, -260px 0, 0 0, 0 0;
   }
 
   100% {
-    background-position: 260px 130px, -230px 160px, 42px 42px, 180px 0, -220px 150px, 200px -140px;
+    background-position: 420px 0, -560px 24px, 260px -80px, 110px 0, -170px 0;
   }
 }
 
