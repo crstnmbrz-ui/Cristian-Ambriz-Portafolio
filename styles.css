@@ -703,9 +703,14 @@ h3 {
   opacity: 0.18;
 }
 
-.about-tech-content {
+.about-tech-content,
+.education-content,
+.resume-metrics {
   position: relative;
   z-index: 2;
+}
+
+.about-tech-content {
   max-width: 940px;
 }
 
