@@ -127,8 +127,8 @@ function setupDottedSurfaces() {
     surfaceCanvas.style.height = `${height}px`;
     surfaceCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
 
-    const amountX = Math.max(22, Math.min(isMobile ? 30 : 46, Math.floor(width / 24)));
-    const amountY = Math.max(14, Math.min(isMobile ? 18 : 28, Math.floor(height / 22)));
+    const amountX = Math.max(24, Math.min(isMobile ? 32 : 54, Math.floor(width / 20)));
+    const amountY = Math.max(16, Math.min(isMobile ? 22 : 34, Math.floor(height / 18)));
     const points = [];
 
     for (let ix = 0; ix < amountX; ix += 1) {
@@ -166,8 +166,8 @@ function drawDottedSurface(time = 0) {
       const flow = Math.sin(timeScale * 2 + point.iy * 0.38) * 16;
       const x = point.ix * spacingX + flow - width * 0.03;
       const y = height * 0.2 + point.iy * spacingY + wave;
-      const alpha = (0.1 + depth * 0.16) * point.drift;
-      const radius = 0.75 + depth * 0.95;
+      const alpha = (0.18 + depth * 0.22) * point.drift;
+      const radius = 1.05 + depth * 1.2;
 
       surfaceCtx.beginPath();
       surfaceCtx.arc(x, y, radius, 0, Math.PI * 2);
@@ -177,7 +177,7 @@ function drawDottedSurface(time = 0) {
       if (point.ix % 4 === 0 && point.iy % 3 === 0) {
         surfaceCtx.beginPath();
         surfaceCtx.arc(x, y, radius * 2.2, 0, Math.PI * 2);
-        surfaceCtx.fillStyle = `rgba(104, 226, 255, ${alpha * 0.2})`;
+        surfaceCtx.fillStyle = `rgba(104, 226, 255, ${alpha * 0.32})`;
         surfaceCtx.fill();
       }
     });
@@ -193,7 +193,7 @@ function drawDottedSurface(time = 0) {
         if (ix === 0) surfaceCtx.moveTo(x, y);
         else surfaceCtx.lineTo(x, y);
       }
-      surfaceCtx.strokeStyle = `rgba(73, 199, 255, ${0.025 + (iy / amountY) * 0.035})`;
+      surfaceCtx.strokeStyle = `rgba(73, 199, 255, ${0.055 + (iy / amountY) * 0.055})`;
       surfaceCtx.lineWidth = 1;
       surfaceCtx.stroke();
     }
