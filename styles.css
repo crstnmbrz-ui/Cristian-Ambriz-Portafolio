@@ -642,12 +642,23 @@ h3 {
     0 30px 90px rgba(40, 67, 190, 0.13);
 }
 
+.about-dotted-surface {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.52;
+  pointer-events: none;
+  filter: saturate(1.18) drop-shadow(0 0 14px rgba(74, 205, 255, 0.16));
+}
+
 .about-tech-card::before {
   content: "";
   position: absolute;
   inset: -28% -10% -22% -24%;
   z-index: 0;
-  opacity: 0.28;
+  opacity: 0.12;
   background:
     repeating-radial-gradient(ellipse at 9% 52%, transparent 0 18px, rgba(0, 220, 255, 0.8) 19px 21px, transparent 22px 34px),
     repeating-radial-gradient(ellipse at 9% 52%, transparent 0 33px, rgba(126, 61, 255, 0.44) 34px 36px, transparent 37px 54px),
@@ -683,7 +694,7 @@ h3 {
 }
 
 .about-tech-card:hover::before {
-  opacity: 0.34;
+  opacity: 0.18;
 }
 
 .about-tech-content {

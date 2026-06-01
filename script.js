@@ -17,8 +17,11 @@ const caProducts = document.querySelector("#ca-natural-products");
 const canvas = document.querySelector(".ambient-canvas");
 const ctx = canvas.getContext("2d");
 const spacecraft = document.querySelector(".spacecraft");
+const dottedSurfaceCanvases = [...document.querySelectorAll("[data-dotted-surface]")];
 
 let particles = [];
+let dottedSurfaces = [];
+let dottedSurfaceFrame;
 const spacecraftDirections = ["left", "top", "right", "bottom"];
 let spacecraftDirectionIndex = Math.floor(Math.random() * spacecraftDirections.length);
 const signatureSegments = [
@@ -105,6 +108,110 @@ function drawAmbient(time = 0) {
 
   drawSignature(time, viewportWidth, window.innerHeight);
   requestAnimationFrame(drawAmbient);
+}
+
+function setupDottedSurfaces() {
+  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+  const isMobile = document.documentElement.clientWidth < 640;
+
+  dottedSurfaces = dottedSurfaceCanvases.map((surfaceCanvas) => {
+    const host = surfaceCanvas.closest(".about-tech-card") || surfaceCanvas.parentElement;
+    const rect = host.getBoundingClientRect();
+    const width = Math.max(1, Math.floor(rect.width));
+    const height = Math.max(1, Math.floor(rect.height));
+    const surfaceCtx = surfaceCanvas.getContext("2d");
+
+    surfaceCanvas.width = width * ratio;
+    surfaceCanvas.height = height * ratio;
+    surfaceCanvas.style.width = `${width}px`;
+    surfaceCanvas.style.height = `${height}px`;
+    surfaceCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+    const amountX = Math.max(22, Math.min(isMobile ? 30 : 46, Math.floor(width / 24)));
+    const amountY = Math.max(14, Math.min(isMobile ? 18 : 28, Math.floor(height / 22)));
+    const points = [];
+
+    for (let ix = 0; ix < amountX; ix += 1) {
+      for (let iy = 0; iy < amountY; iy += 1) {
+        points.push({
+          ix,
+          iy,
+          phase: Math.random() * Math.PI * 2,
+          drift: Math.random() * 0.8 + 0.35,
+        });
+      }
+    }
+
+    return { canvas: surfaceCanvas, ctx: surfaceCtx, width, height, amountX, amountY, points };
+  });
+}
+
+function drawDottedSurface(time = 0) {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  dottedSurfaces.forEach((surface) => {
+    const { ctx: surfaceCtx, width, height, amountX, amountY, points } = surface;
+    const spacingX = width / (amountX - 1);
+    const spacingY = height / (amountY + 1);
+    const timeScale = reduceMotion ? 0 : time * 0.00042;
+
+    surfaceCtx.clearRect(0, 0, width, height);
+    surfaceCtx.globalCompositeOperation = "lighter";
+
+    points.forEach((point) => {
+      const depth = point.iy / Math.max(1, amountY - 1);
+      const wave =
+        Math.sin(point.ix * 0.42 + timeScale * 3.2 + point.phase) * (10 + depth * 14) +
+        Math.sin(point.iy * 0.66 + timeScale * 2.4) * 7;
+      const flow = Math.sin(timeScale * 2 + point.iy * 0.38) * 16;
+      const x = point.ix * spacingX + flow - width * 0.03;
+      const y = height * 0.2 + point.iy * spacingY + wave;
+      const alpha = (0.1 + depth * 0.16) * point.drift;
+      const radius = 0.75 + depth * 0.95;
+
+      surfaceCtx.beginPath();
+      surfaceCtx.arc(x, y, radius, 0, Math.PI * 2);
+      surfaceCtx.fillStyle = `rgba(104, 226, 255, ${alpha})`;
+      surfaceCtx.fill();
+
+      if (point.ix % 4 === 0 && point.iy % 3 === 0) {
+        surfaceCtx.beginPath();
+        surfaceCtx.arc(x, y, radius * 2.2, 0, Math.PI * 2);
+        surfaceCtx.fillStyle = `rgba(104, 226, 255, ${alpha * 0.2})`;
+        surfaceCtx.fill();
+      }
+    });
+
+    for (let iy = 0; iy < amountY; iy += 3) {
+      surfaceCtx.beginPath();
+      for (let ix = 0; ix < amountX; ix += 1) {
+        const depth = iy / Math.max(1, amountY - 1);
+        const wave = Math.sin(ix * 0.42 + timeScale * 3.2 + iy * 0.2) * (10 + depth * 14);
+        const flow = Math.sin(timeScale * 2 + iy * 0.38) * 16;
+        const x = ix * spacingX + flow - width * 0.03;
+        const y = height * 0.2 + iy * spacingY + wave;
+        if (ix === 0) surfaceCtx.moveTo(x, y);
+        else surfaceCtx.lineTo(x, y);
+      }
+      surfaceCtx.strokeStyle = `rgba(73, 199, 255, ${0.025 + (iy / amountY) * 0.035})`;
+      surfaceCtx.lineWidth = 1;
+      surfaceCtx.stroke();
+    }
+
+    surfaceCtx.globalCompositeOperation = "source-over";
+  });
+
+  if (!reduceMotion && dottedSurfaces.length) {
+    dottedSurfaceFrame = requestAnimationFrame(drawDottedSurface);
+  }
+}
+
+function startDottedSurfaces() {
+  if (!dottedSurfaceCanvases.length) return;
+
+  if (dottedSurfaceFrame) cancelAnimationFrame(dottedSurfaceFrame);
+  setupDottedSurfaces();
+  drawDottedSurface();
 }
 
 function launchSpacecraft() {
@@ -284,5 +391,9 @@ sections.forEach((section) => navObserver.observe(section));
 
 setCanvasSize();
 drawAmbient();
+startDottedSurfaces();
 startSpacecraftPatrol();
-window.addEventListener("resize", setCanvasSize);
+window.addEventListener("resize", () => {
+  setCanvasSize();
+  startDottedSurfaces();
+});
