@@ -1459,6 +1459,37 @@ h3 {
   color: var(--brand-primary);
 }
 
+.experience-action {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 42px;
+  margin-top: 20px;
+  padding: 10px 18px;
+  border: 1px solid var(--brand-border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  font-weight: 800;
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    background 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.experience-action:hover,
+.experience-action:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--brand-primary);
+  background: var(--brand-secondary);
+  box-shadow: 0 14px 32px var(--brand-shadow);
+}
+
 .project-grid {
   grid-template-columns: repeat(3, 1fr);
 }
@@ -2142,11 +2173,11 @@ h3 {
   position: absolute;
   inset: 0;
   opacity: 0;
-  animation: speakingGallery 9s infinite;
+  animation: speakingGallery 6s infinite;
 }
 
 .speaking-gallery img:nth-child(2) {
-  animation-delay: 4.5s;
+  animation-delay: 3s;
   object-position: 42% 48%;
 }
 
@@ -2492,6 +2523,11 @@ footer {
 }
 
 @media (max-width: 640px) {
+  .experience-action {
+    width: 100%;
+    min-height: 46px;
+  }
+
   .spacecraft {
     width: clamp(92px, 29vw, 126px);
     filter: saturate(0.76) brightness(0.64) drop-shadow(0 0 12px rgba(100, 244, 255, 0.14));
