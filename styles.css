@@ -884,6 +884,23 @@ h3 {
     0 0 22px rgba(255, 193, 54, 0.1);
 }
 
+.nsls-award {
+  --award-accent: rgba(237, 91, 99, 0.9);
+  --award-line: rgba(196, 55, 65, 0.42);
+  --award-wash: rgba(166, 33, 44, 0.11);
+  --award-glow: rgba(180, 39, 50, 0.21);
+  --award-highlight: rgba(220, 65, 75, 0.18);
+  background:
+    radial-gradient(circle at 10% 0%, rgba(209, 48, 59, 0.16), transparent 40%),
+    linear-gradient(140deg, rgba(255, 255, 255, 0.03), transparent 52%),
+    var(--panel);
+}
+
+.nsls-award::after {
+  background: linear-gradient(90deg, #d93642, #ef6972 60%, transparent);
+  box-shadow: 0 0 19px rgba(217, 54, 66, 0.28);
+}
+
 .mindset-award {
   --award-accent: rgba(80, 167, 255, 0.84);
   --award-line: rgba(60, 130, 232, 0.38);
