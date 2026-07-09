@@ -1459,6 +1459,15 @@ h3 {
   color: var(--brand-primary);
 }
 
+.timeline-item p + p {
+  margin-top: 16px;
+}
+
+.timeline-item strong {
+  color: var(--text-primary);
+  font-weight: 750;
+}
+
 .experience-action {
   position: relative;
   z-index: 2;
