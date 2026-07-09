@@ -835,6 +835,55 @@ h3 {
   box-shadow: 0 14px 34px var(--award-glow);
 }
 
+.google-ai-award {
+  --award-accent: rgba(106, 169, 255, 0.9);
+  --award-line: rgba(66, 133, 244, 0.4);
+  --award-wash: rgba(66, 133, 244, 0.1);
+  --award-glow: rgba(66, 133, 244, 0.2);
+  --award-highlight: rgba(66, 133, 244, 0.18);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(66, 133, 244, 0.14), transparent 34%),
+    radial-gradient(circle at 100% 16%, rgba(52, 168, 83, 0.07), transparent 28%),
+    linear-gradient(140deg, rgba(234, 67, 53, 0.035), transparent 44%),
+    var(--panel);
+}
+
+.google-ai-award::after {
+  width: clamp(120px, 24vw, 220px);
+  background:
+    linear-gradient(
+      90deg,
+      #4285f4 0 28%,
+      #ea4335 28% 50%,
+      #fbbc05 50% 73%,
+      #34a853 73% 100%
+    );
+  box-shadow:
+    0 0 16px rgba(66, 133, 244, 0.28),
+    0 0 24px rgba(52, 168, 83, 0.1);
+}
+
+.pioneers-ai-award {
+  --award-accent: rgba(118, 211, 248, 0.9);
+  --award-line: rgba(104, 194, 233, 0.4);
+  --award-wash: rgba(96, 189, 231, 0.1);
+  --award-glow: rgba(65, 160, 210, 0.2);
+  --award-highlight: rgba(105, 202, 240, 0.17);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(114, 205, 242, 0.15), transparent 38%),
+    radial-gradient(circle at 100% 10%, rgba(255, 193, 54, 0.09), transparent 30%),
+    linear-gradient(140deg, rgba(255, 196, 52, 0.035), transparent 46%),
+    var(--panel);
+}
+
+.pioneers-ai-award::after {
+  width: clamp(110px, 22vw, 205px);
+  background: linear-gradient(90deg, #72cdf2, #72cdf2 58%, #ffc136 58%, #ffc136 82%, transparent);
+  box-shadow:
+    0 0 18px rgba(114, 205, 242, 0.25),
+    0 0 22px rgba(255, 193, 54, 0.1);
+}
+
 .mindset-award {
   --award-accent: rgba(80, 167, 255, 0.84);
   --award-line: rgba(60, 130, 232, 0.38);
